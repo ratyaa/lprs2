@@ -20,7 +20,7 @@ int main() {
 }
 
 int findLastZero(int (&array)[N]) {
-    int range = N / 4 + N % 4;
+    int range = (N / 2 + N % 2) / 2 + (N / 2 + N % 2) % 2;
     int pos = N / 2;
     
     while (!(array[pos] == 0 && array[pos + 1] != 0) && (pos < N && pos >= 0)) {
