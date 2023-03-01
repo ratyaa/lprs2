@@ -1,0 +1,7 @@
+software:
+gnuplot -- plotting software
+feh -- image viewer
+
+$ make build target=<name> -- to build <name> test (default value is 'shaker')
+$ make plot target=<name> -- to plot <name> data (default value is 'shaker')
+$ make run target=<name> -- to run <name> via 'time' (default value is 'shaker')
