@@ -16,3 +16,8 @@ project structure:
 ./src/ -- source code files
 ./bin/ -- executables
 ./data/ -- benchmark data under .csv files, and plots under .png
+
+./src/sort_functions.c(h)pp -- sort funcitons definitions (declarations)
+./src/benchmark.c(h)pp -- benchmark class
+./src/<name>.cpp -- small entry point for '<name>' program
+
