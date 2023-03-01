@@ -4,9 +4,13 @@ feh -- image viewer
 GNU make
 
 make:
-$ make build target=<name> -- to build <name> test (default value is 'shaker')
-$ make plot target=<name> -- to plot <name> data (default value is 'shaker')
-$ make run target=<name> -- to run <name> via 'time' (default value is 'shaker')
+$ make build target=<name> -- to build <name> test
+$ make plot target=<name> -- to plot <name> data
+$ make run target=<name> -- to run <name> via 'time'
+possible <name>s are:
+'shaker'(default) -- shaker sort
+'bubblef' -- bubble sort with forward step
+'bubbleb' -- bubble sort with backward step
 
 project structure:
 ./src/ -- source code files
