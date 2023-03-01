@@ -2,7 +2,8 @@
 
 let
   cppPackages = [
-    pkgs.clang
+    pkgs.clang_15
+    pkgs.clang-tools_15
     pkgs.gcc
   ];
   cppTools = [
@@ -16,5 +17,6 @@ pkgs.mkShell {
   buildInputs = [
     cppPackages
     cppTools
+    pkgs.gnuplot
   ];
 }
