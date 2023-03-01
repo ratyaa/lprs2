@@ -1,7 +1,14 @@
 software:
 gnuplot -- plotting software
 feh -- image viewer
+GNU make
 
+make:
 $ make build target=<name> -- to build <name> test (default value is 'shaker')
 $ make plot target=<name> -- to plot <name> data (default value is 'shaker')
 $ make run target=<name> -- to run <name> via 'time' (default value is 'shaker')
+
+project structure:
+./src/ -- source code files
+./bin/ -- executables
+./data/ -- benchmark data under .csv files, and plots under .png
