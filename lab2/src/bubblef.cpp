@@ -4,8 +4,9 @@
 #include <iostream>
 
 int main() {
-    SortBenchmark shaker_benchmark(&bubble_forward_sort, "data/bubblef.csv");
-    shaker_benchmark.run();
+    SortBenchmark bubble_forward_benchmark(&bubble_forward_sort,
+                                           "data/bubblef.csv");
+    bubble_forward_benchmark.run();
 
     return 0;
 }

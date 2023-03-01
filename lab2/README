@@ -11,6 +11,7 @@ possible <name>s are:
 'shaker'(default) -- shaker sort
 'bubblef' -- bubble sort with forward step
 'bubbleb' -- bubble sort with backward step
+'comb' -- comb sort
 
 project structure:
 ./src/ -- source code files

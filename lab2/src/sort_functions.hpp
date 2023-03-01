@@ -13,3 +13,4 @@ unsigned backward_step(int *, unsigned const, unsigned const);
 unsigned shaker_sort(int *, unsigned const);
 unsigned bubble_forward_sort(int *, unsigned const);
 unsigned bubble_backward_sort(int *, unsigned const);
+unsigned comb_sort(int *, unsigned const);
