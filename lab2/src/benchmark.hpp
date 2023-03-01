@@ -28,6 +28,7 @@ class SortBenchmark {
     char const *output_file_name;
 
     call_result call(unsigned const);
+    unsigned cinWithDefaultIfEmpty(unsigned default_value);
 
   public:
     SortBenchmark(unsigned (*)(int *, unsigned const), char const *);

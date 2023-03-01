@@ -51,6 +51,14 @@ void SortBenchmark::run() {
                     << row.swaps_amount << '\n';
 }
 
+unsigned SortBenchmark::cinWithDefaultIfEmpty(unsigned default_value) {
+    auto input = std::cin.get();
+    if (input == '\n')
+        input = default_value;
+
+    return input;
+}
+
 SortBenchmark::SortBenchmark(unsigned (*sort)(int *, unsigned const),
                              unsigned const initial_array_length,
                              unsigned const array_length_step,
@@ -65,15 +73,16 @@ SortBenchmark::SortBenchmark(unsigned (*sort)(int *, unsigned const),
 SortBenchmark::SortBenchmark(unsigned (*sort)(int *, unsigned const),
                              char const *output_file_name)
     : sort(sort), output_file_name(output_file_name) {
-    std::cout << "Enter initial array length: ";
-    std::cin >> this->initial_array_length;
+    std::cout << "Enter initial array length (default is 1): ";
+    this->initial_array_length = cinWithDefaultIfEmpty(1);
 
-    std::cout << "Enter array length step: ";
-    std::cin >> this->array_length_step;
+    std::cout << "Enter array length step (default is 1): ";
+    this->array_length_step = cinWithDefaultIfEmpty(1);
 
-    std::cout << "Enter amount of iterations per benchmark call: ";
-    std::cin >> this->iterations_per_call_amount;
+    std::cout
+        << "Enter amount of iterations per benchmark call (default is 10000): ";
+    this->iterations_per_call_amount = cinWithDefaultIfEmpty(10000);
 
-    std::cout << "Enter amount of benchmark calls: ";
-    std::cin >> this->calls_amount;
+    std::cout << "Enter amount of benchmark calls (default is 100): ";
+    this->calls_amount = cinWithDefaultIfEmpty(100);
 }
