@@ -4,7 +4,7 @@ feh -- image viewer
 GNU make
 
 make:
-$ make build target=<name> -- to build <name> test
+$ make build target=<name> -- to build <name> executable
 $ make plot target=<name> -- to plot <name> data
 $ make run target=<name> -- to run <name> via 'time'
 possible <name>s are:
