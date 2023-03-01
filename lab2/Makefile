@@ -25,8 +25,10 @@ $(SRCDIR)/benchmark.*
 	$(SRCDIR)/$(target).cpp
 
 plot:
+ifneq ($(wildcard $(DATADIR)/$(target).csv),)
 	@$(PLOT) $(PLOTFLAGS) $(SRCDIR)/plot.gp
 	@$(IMAGE_VIEWER) $(DATADIR)/$(target).png &
+endif
 
 clean:
 	@rm $(TARGETDIR) -r
