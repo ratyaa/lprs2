@@ -18,6 +18,7 @@ build: $(target)
 $(target): $(SRCDIR)/shaker.cpp \
 $(SRCDIR)/sort_functions.* \
 $(SRCDIR)/benchmark.*
+	@mkdir -p $(TARGETDIR)
 	@$(CXX) $(CXXFLAGS) -o $(TARGETDIR)/$(target) \
 	$(SRCDIR)/sort_functions.cpp \
 	$(SRCDIR)/benchmark.cpp \
@@ -28,7 +29,7 @@ plot:
 	@$(IMAGE_VIEWER) $(DATADIR)/$(target).png &
 
 clean:
-	@rm $(TARGETDIR)/$(target) -r
+	@rm $(TARGETDIR) -r
 
 run:
 	@env time -v $(TARGETDIR)/$(target)
