@@ -7,6 +7,7 @@ make:
 $ make build target=<name> -- to build <name> executable
 $ make plot target=<name> -- to plot <name> data
 $ make run target=<name> -- to run <name> via 'time'
+$ make all -- build & run & plot (default option)
 possible <name>s are:
 'shaker'(default) -- shaker sort
 'bubblef' -- bubble sort with forward step
