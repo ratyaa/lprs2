@@ -15,15 +15,16 @@ struct call_result
 
 struct benchmark_defaults
 {
-    static constexpr unsigned const &initial_array_length       = 1;
-    static constexpr unsigned const &array_length_step          = 1;
-    static constexpr unsigned const &iterations_per_call_amount = 10000;
-    static constexpr unsigned const &calls_amount               = 5000;
+    static constexpr unsigned const &initial_array_length       = 1000000;
+    static constexpr unsigned const &array_length_step          = 1000000;
+    static constexpr unsigned const &iterations_per_call_amount = 100;
+    static constexpr unsigned const &calls_amount               = 100;
 } static const benchmark_defaults;
 
 class SearchBenchmark {
-    unsigned (*search)(int *, unsigned const, int const);
+    int (*search)(int *, unsigned const, int const);
     void (*fill)(int *, unsigned const);
+    void (*permutate)(int *, int *, int const);
 
     static constexpr unsigned seed = 20602;
 
@@ -39,7 +40,10 @@ class SearchBenchmark {
     unsigned safe_read_input(unsigned const);
 
   public:
-    SearchBenchmark(unsigned (*)(int *, unsigned const, int const),
+    SearchBenchmark(int (*)(int *, unsigned const, int const),
+                    void (*)(int *, unsigned const),
+                    void (*)(int *, int *, int const), char const *);
+    SearchBenchmark(int (*)(int *, unsigned const, int const),
                     void (*)(int *, unsigned const), char const *);
 
     void run();

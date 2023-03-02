@@ -2,13 +2,21 @@
 
 #include <limits.h>
 
-unsigned binarySearch(int *array, unsigned const array_length,
-                      int const number);
-unsigned bruteForceSearch(int *array, unsigned const array_length,
-                          int const number);
-unsigned pairSumBruteForce(int *array, unsigned const array_length,
-                           int const number);
-unsigned pairSumFast(int *array, unsigned const array_length, int const number);
+static constexpr int const &not_found_code = -1;
 
-void fillWithNonegativeIntegerSequence(int *array, unsigned const array_length);
-void fillWithMinusOne(int *array, unsigned const array_length);
+void swap(int *, unsigned const, unsigned const);
+
+int binarySearch(int *, unsigned const, int const);
+int bruteForceSearch(int *, unsigned const, int const);
+
+int pairSumBruteForce(int *, unsigned const, int const);
+int pairSumFast(int *, unsigned const, int const);
+
+void fillWithNonegativeIntegerSequence(int *, unsigned const);
+void fillWithMinusOne(int *, unsigned const);
+void fillWithZeros(int *, unsigned const);
+
+void dummy_permutate(int *, int *, int const);
+void freqUsed_A_permutate(int *, int *, int const);
+void freqUsed_B_permutate(int *, int *, int const);
+void freqUsed_C_permutate(int *, int *, int const);

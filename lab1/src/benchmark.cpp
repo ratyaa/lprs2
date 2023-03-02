@@ -1,31 +1,37 @@
 #include "benchmark.hpp"
 
 call_result SearchBenchmark::call(unsigned const array_length) {
-    int *array = new int[array_length];
+    int *array  = new int[array_length];
+    int *status = new int[array_length];
     int number;
+    int search_result;
 
     call_result result;
 
     std::default_random_engine rng(seed);
     std::uniform_int_distribution<int> dstr(0, array_length);
 
+    fill(array, array_length);
+    fillWithZeros(status, array_length);
+
     auto begin = std::chrono::steady_clock::now();
 
     for (unsigned _ = 0; _ < iterations_per_call_amount; _++) {
-        number = dstr(rng);
-        fill(array, array_length);
-        search(array, array_length, number);
+        number        = dstr(rng);
+        search_result = search(array, array_length, number);
+        permutate(array, status, search_result);
     }
 
     auto end = std::chrono::steady_clock::now();
     auto time_span =
-        std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin)
+        std::chrono::duration_cast<std::chrono::microseconds>(end - begin)
             .count();
 
     result.array_length = array_length;
     result.time_span    = (double)(time_span) / iterations_per_call_amount;
 
     delete[] array;
+    delete[] status;
 
     return result;
 }
@@ -69,11 +75,20 @@ unsigned SearchBenchmark::safe_read_input(unsigned const default_value) {
     return result;
 }
 
-SearchBenchmark::SearchBenchmark(unsigned (*search)(int *, unsigned const,
-                                                    int const),
+SearchBenchmark::SearchBenchmark(int (*search)(int *, unsigned const,
+                                               int const),
                                  void (*fill)(int *, unsigned const),
                                  char const *output_file_name)
-    : search(search), fill(fill), output_file_name(output_file_name) {
+    : SearchBenchmark::SearchBenchmark(search, fill, &dummy_permutate,
+                                       output_file_name) {}
+
+SearchBenchmark::SearchBenchmark(int (*search)(int *, unsigned const,
+                                               int const),
+                                 void (*fill)(int *, unsigned const),
+                                 void (*permutate)(int *, int *, int const),
+                                 char const *output_file_name)
+    : search(search), fill(fill), permutate(permutate),
+      output_file_name(output_file_name) {
     std::cout << "Enter initial array length (default is "
               << benchmark_defaults.initial_array_length << "): ";
     this->initial_array_length =

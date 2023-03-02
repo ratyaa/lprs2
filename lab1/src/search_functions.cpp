@@ -1,8 +1,14 @@
 #include "search_functions.hpp"
 
-unsigned bruteForceSearch(int *array, unsigned const array_length,
-                          int const number) {
-    int result = -1;
+void swap(int *array, unsigned const first, unsigned const second) {
+    array[first] += array[second];
+    array[second] = array[first] - array[second];
+    array[first]  = array[first] - array[second];
+}
+
+int bruteForceSearch(int *array, unsigned const array_length,
+                     int const number) {
+    int result = not_found_code;
 
     for (unsigned i = 0; i < array_length; i++)
         if (array[i] == number) {
@@ -13,9 +19,8 @@ unsigned bruteForceSearch(int *array, unsigned const array_length,
     return result;
 }
 
-unsigned binarySearch(int *array, unsigned const array_length,
-                      int const number) {
-    unsigned result = -1;
+int binarySearch(int *array, unsigned const array_length, int const number) {
+    unsigned result = not_found_code;
     unsigned left   = 0;
     unsigned right  = array_length;
     unsigned current_pos;
@@ -30,7 +35,7 @@ unsigned binarySearch(int *array, unsigned const array_length,
             break;
         } else if (current_value > number && current_pos != 0)
             right = current_pos - 1;
-        else if (current_pos != UINT_MAX)
+        else if (current_value < number && current_pos != UINT_MAX)
             left = current_pos + 1;
         else
             break;
@@ -50,8 +55,12 @@ void fillWithMinusOne(int *array, unsigned const array_length) {
         array[i] = -1;
 }
 
-unsigned pairSumBruteForce(int *array, unsigned const array_length,
-                           int const sum) {
+void fillWithZeros(int *array, unsigned const array_length) {
+    for (unsigned i = 0; i < array_length; i++)
+        array[i] = 0;
+}
+
+int pairSumBruteForce(int *array, unsigned const array_length, int const sum) {
     unsigned result_first  = 0;
     unsigned result_second = 0;
 
@@ -70,7 +79,7 @@ unsigned pairSumBruteForce(int *array, unsigned const array_length,
     return 0;
 }
 
-unsigned pairSumFast(int *array, unsigned const array_length, int const sum) {
+int pairSumFast(int *array, unsigned const array_length, int const sum) {
     unsigned result_first  = 0;
     unsigned result_second = 0;
     unsigned first         = 0;
@@ -88,5 +97,53 @@ unsigned pairSumFast(int *array, unsigned const array_length, int const sum) {
     }
 
     // return std::pair<unsigned, unsigned>(first, second)
-    return 0;
+    return ((unsigned)(result_first) + (unsigned)(result_second)) / 2;
+}
+
+unsigned freqUsed_A(int *array, unsigned const array_length, int const number) {
+    int result = bruteForceSearch(array, array_length, number);
+
+    if (result != not_found_code)
+        swap(array, result, 0);
+
+    return result;
+}
+
+unsigned freqUsed_B(int *array, unsigned const array_length, int const number) {
+    int result = bruteForceSearch(array, array_length, number);
+
+    if (result != not_found_code && result != 0)
+        swap(array, result, result - 1);
+
+    return result;
+}
+
+unsigned freqUsed_C(int *array, unsigned const array_length, int const number) {
+    int result = bruteForceSearch(array, array_length, number);
+
+    if (result != not_found_code && result != 0)
+        swap(array, result, result - 1);
+
+    return result;
+}
+
+void dummy_permutate(int *array, int *status, int const search_result) {}
+
+void freqUsed_A_permutate(int *array, int *status, int const search_result) {
+    if (search_result != not_found_code)
+        swap(array, search_result, 0);
+}
+
+void freqUsed_B_permutate(int *array, int *status, int const search_result) {
+    if (search_result != not_found_code && search_result != 0)
+        swap(array, search_result, search_result - 1);
+}
+
+void freqUsed_C_permutate(int *array, int *status, int const search_result) {
+    if (search_result != not_found_code) {
+        status[search_result]++;
+        if (search_result != 0)
+            if (status[search_result] > status[search_result - 1])
+                swap(array, search_result, search_result - 1);
+    }
 }
