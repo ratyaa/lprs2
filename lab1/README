@@ -7,18 +7,22 @@ make:
 $ make build target=<name> -- to build <name> executable
 $ make plot target=<name> -- to plot <name> data
 $ make run target=<name> -- to run <name> via 'time'
+$ make all -- build & run & plot (default option)
 possible <name>s are:
-'shaker'(default) -- shaker sort
-'bubblef' -- bubble sort with forward step
-'bubbleb' -- bubble sort with backward step
-'comb' -- comb sort
+'bruteforce_average'(default) -- brute force search (average case)
+'bruteforce_worst' -- brute force search (worst case)
+'binary_average' -- binary search (average case)
+'binary_worst' -- binary search (worst case)
+'pairsumbf_average' -- brute force pair search (average case)
+'pairsumbf_worst' -- brute force pair search (worst case)
+'pairsumf' -- fast pair search for ordered array
 
 project structure:
 ./src/ -- source code files
 ./bin/ -- executables
 ./data/ -- benchmark data under .csv files, and plots under .png
 
-./src/sort_functions.c(h)pp -- sort funcitons definitions (declarations)
+./src/search_functions.c(h)pp -- search funcitons definitions (declarations)
 ./src/benchmark.c(h)pp -- benchmark class
 ./src/<name>.cpp -- small entry point for '<name>' program
 
