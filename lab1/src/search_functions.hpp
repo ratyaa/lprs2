@@ -2,10 +2,13 @@
 
 #include <limits.h>
 
-unsigned binarySearch(int const *array, unsigned const array_length,
+unsigned binarySearch(int *array, unsigned const array_length,
                       int const number);
-unsigned bruteForceSearch(int const *array, unsigned const array_length,
+unsigned bruteForceSearch(int *array, unsigned const array_length,
                           int const number);
+unsigned pairSumBruteForce(int *array, unsigned const array_length,
+                           int const number);
+unsigned pairSumFast(int *array, unsigned const array_length, int const number);
 
 void fillWithNonegativeIntegerSequence(int *array, unsigned const array_length);
 void fillWithMinusOne(int *array, unsigned const array_length);

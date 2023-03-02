@@ -4,7 +4,7 @@ PLOTFLAGS =		-e "inputfile = \"$(DATADIR)/$(target).csv\"; \
 			set output \"$(DATADIR)/$(target).png\";"
 
 CXX = 			clang++
-CXXFLAGS =		-std=c++17 -Wall -O3
+CXXFLAGS =		-std=c++17 -Wall
 target ?=		bruteforce_average
 SRCDIR =		src
 TARGETDIR =		bin

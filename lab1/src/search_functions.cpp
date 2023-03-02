@@ -1,6 +1,6 @@
 #include "search_functions.hpp"
 
-unsigned bruteForceSearch(int const *array, unsigned const array_length,
+unsigned bruteForceSearch(int *array, unsigned const array_length,
                           int const number) {
     int result = -1;
 
@@ -13,7 +13,7 @@ unsigned bruteForceSearch(int const *array, unsigned const array_length,
     return result;
 }
 
-unsigned binarySearch(int const *array, unsigned const array_length,
+unsigned binarySearch(int *array, unsigned const array_length,
                       int const number) {
     unsigned result = -1;
     unsigned left   = 0;
@@ -48,4 +48,45 @@ void fillWithNonegativeIntegerSequence(int *array,
 void fillWithMinusOne(int *array, unsigned const array_length) {
     for (unsigned i = 0; i < array_length; i++)
         array[i] = -1;
+}
+
+unsigned pairSumBruteForce(int *array, unsigned const array_length,
+                           int const sum) {
+    unsigned result_first  = 0;
+    unsigned result_second = 0;
+
+    for (unsigned first = 0; first < array_length; first++) {
+        for (unsigned second = 0; second < array_length; second++)
+            if (array[first] + array[second] == sum) {
+                result_first  = first;
+                result_second = second;
+                break;
+            }
+        if (array[result_first] + array[result_second] == sum)
+            break;
+    }
+
+    // return std::pair<unsigned, unsigned>(first, second)
+    return 0;
+}
+
+unsigned pairSumFast(int *array, unsigned const array_length, int const sum) {
+    unsigned result_first  = 0;
+    unsigned result_second = 0;
+    unsigned first         = 0;
+    unsigned second        = array_length - 1;
+
+    while (first != second) {
+        if (array[first] + array[second] == sum) {
+            result_first  = first;
+            result_second = second;
+            break;
+        } else if (array[first] + array[second] < sum)
+            first++;
+        else
+            second--;
+    }
+
+    // return std::pair<unsigned, unsigned>(first, second)
+    return 0;
 }

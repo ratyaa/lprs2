@@ -69,7 +69,7 @@ unsigned SearchBenchmark::safe_read_input(unsigned const default_value) {
     return result;
 }
 
-SearchBenchmark::SearchBenchmark(unsigned (*search)(int const *, unsigned const,
+SearchBenchmark::SearchBenchmark(unsigned (*search)(int *, unsigned const,
                                                     int const),
                                  void (*fill)(int *, unsigned const),
                                  char const *output_file_name)
