@@ -1,0 +1,24 @@
+software:
+gnuplot -- plotting software
+feh -- image viewer
+GNU make
+
+make:
+$ make build target=<name> -- to build <name> executable
+$ make plot target=<name> -- to plot <name> data
+$ make run target=<name> -- to run <name> via 'time'
+possible <name>s are:
+'shaker'(default) -- shaker sort
+'bubblef' -- bubble sort with forward step
+'bubbleb' -- bubble sort with backward step
+'comb' -- comb sort
+
+project structure:
+./src/ -- source code files
+./bin/ -- executables
+./data/ -- benchmark data under .csv files, and plots under .png
+
+./src/sort_functions.c(h)pp -- sort funcitons definitions (declarations)
+./src/benchmark.c(h)pp -- benchmark class
+./src/<name>.cpp -- small entry point for '<name>' program
+
