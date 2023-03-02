@@ -6,16 +6,19 @@ PLOTFLAGS =		-e "inputfile = \"$(DATADIR)/$(target).csv\"; \
 CXX = 			clang++
 CXXFLAGS =		-std=c++17 -Wall
 target ?=		shaker
-.DEFAULT_GOAL = 	build
 SRCDIR =		src
 TARGETDIR =		bin
 DATADIR =		data
 
-.PHONY: build plot clean
+.DEFAULT_GOAL = 	all
 
-build: $(target)
+.PHONY: build plot clean all
 
-$(target): $(SRCDIR)/shaker.cpp \
+all: build run plot
+
+build: $(TARGETDIR)/$(target)
+
+$(TARGETDIR)/$(target): $(SRCDIR)/$(target).cpp \
 $(SRCDIR)/sort_functions.* \
 $(SRCDIR)/benchmark.*
 	@mkdir -p $(TARGETDIR)
