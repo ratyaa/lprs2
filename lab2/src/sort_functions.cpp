@@ -116,3 +116,29 @@ unsigned comb_sort(int *array, unsigned const array_length) {
 
     return swaps_amount;
 }
+
+unsigned shell_sort(int *array, unsigned const array_length) {
+    unsigned gap_seq[]                  = {};
+    double const gap_size_shrink_factor = 1.247;
+
+    unsigned swaps_amount = 0;
+    unsigned swaps_amount_per_step;
+
+    do {
+        swaps_amount_per_step = 0;
+
+        for (unsigned i = 0; i < array_length - gap_size; i++)
+            if (array[i] > array[i + gap_size]) {
+                swap(array, i, i + gap_size);
+                swaps_amount_per_step++;
+            }
+
+        swaps_amount += swaps_amount_per_step;
+
+        gap_size /= gap_size_shrink_factor;
+        if (gap_size < 1)
+            gap_size = 1;
+    } while (swaps_amount_per_step != 0);
+
+    return swaps_amount;
+}

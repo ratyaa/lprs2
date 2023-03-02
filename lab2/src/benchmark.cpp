@@ -85,16 +85,22 @@ SortBenchmark::SortBenchmark(unsigned (*sort)(int *, unsigned const),
 SortBenchmark::SortBenchmark(unsigned (*sort)(int *, unsigned const),
                              char const *output_file_name)
     : sort(sort), output_file_name(output_file_name) {
-    std::cout << "Enter initial array length (default is 1): ";
-    this->initial_array_length = safe_read_input(1);
+    std::cout << "Enter initial array length (default is "
+              << benchmark_defaults.initial_array_length << "): ";
+    this->initial_array_length =
+        safe_read_input(benchmark_defaults.initial_array_length);
 
-    std::cout << "Enter array length step (default is 1): ";
-    this->array_length_step = safe_read_input(1);
+    std::cout << "Enter array length step (default is "
+              << benchmark_defaults.array_length_step << "): ";
+    this->array_length_step =
+        safe_read_input(benchmark_defaults.array_length_step);
 
-    std::cout
-        << "Enter amount of iterations per benchmark call (default is 10000): ";
-    this->iterations_per_call_amount = safe_read_input(10000);
+    std::cout << "Enter amount of iterations per benchmark call (default is "
+              << benchmark_defaults.iterations_per_call_amount << "): ";
+    this->iterations_per_call_amount =
+        safe_read_input(benchmark_defaults.iterations_per_call_amount);
 
-    std::cout << "Enter amount of benchmark calls (default is 100): ";
-    this->calls_amount = safe_read_input(100);
+    std::cout << "Enter amount of benchmark calls (default is "
+              << benchmark_defaults.calls_amount << "): ";
+    this->calls_amount = safe_read_input(benchmark_defaults.calls_amount);
 }
