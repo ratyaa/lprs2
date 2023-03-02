@@ -1,7 +1,6 @@
 IMAGE_VIEWER =		feh
 PLOT =			gnuplot
-PLOTFLAGS =		-e "inputfile = \"$(DATADIR)/$(target).csv\"; \
-			set output \"$(DATADIR)/$(target).png\";"
+PLOTFLAGS =		-e "set output \"$(DATADIR)/$(target).png\";"
 
 CXX = 			clang++
 CXXFLAGS =		-std=c++17 -Wall
@@ -9,6 +8,7 @@ target ?=		bruteforce_average
 SRCDIR =		src
 TARGETDIR =		bin
 DATADIR =		data
+PLOTDIR =		plots
 
 .DEFAULT_GOAL = 	all
 
@@ -28,10 +28,8 @@ $(SRCDIR)/benchmark.*
 	$(SRCDIR)/$(target).cpp
 
 plot:
-ifneq ($(wildcard $(DATADIR)/$(target).csv),)
-	@$(PLOT) $(PLOTFLAGS) $(SRCDIR)/plot.gp
+	@$(PLOT) $(PLOTFLAGS) $(PLOTDIR)/$(target).gp
 	@$(IMAGE_VIEWER) $(DATADIR)/$(target).png &
-endif
 
 clean:
 	@rm $(TARGETDIR) -r

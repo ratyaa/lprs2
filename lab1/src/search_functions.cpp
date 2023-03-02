@@ -97,7 +97,7 @@ int pairSumFast(int *array, unsigned const array_length, int const sum) {
     }
 
     // return std::pair<unsigned, unsigned>(first, second)
-    return ((unsigned)(result_first) + (unsigned)(result_second)) / 2;
+    return 0;
 }
 
 unsigned freqUsed_A(int *array, unsigned const array_length, int const number) {
