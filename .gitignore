@@ -3,6 +3,7 @@
 !*/data/
 !**.cpp
 !**.hpp
+!**.gp
 !**.csv
 !**.png
 !**Makefile
